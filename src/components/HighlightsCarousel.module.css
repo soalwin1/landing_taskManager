@@ -1,0 +1,169 @@
+.carouselContainer {
+  margin: 0 auto;
+  max-width: 1000px;
+  border-radius: 16px;
+  padding: 12px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glow-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.carouselContainer:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.viewport {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Navigation Buttons */
+.navButton {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.prevButton {
+  left: 16px;
+  transform: translateY(-50%) scale(0.8);
+}
+
+.nextButton {
+  right: 16px;
+  transform: translateY(-50%) scale(0.8);
+}
+
+/* Show buttons on container hover */
+.carouselContainer:hover .prevButton {
+  opacity: 1;
+  left: 24px;
+  transform: translateY(-50%) scale(1);
+}
+
+.carouselContainer:hover .nextButton {
+  opacity: 1;
+  right: 24px;
+  transform: translateY(-50%) scale(1);
+}
+
+/* Button Hover State */
+.navButton:hover {
+  background: var(--accent-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+}
+
+.navButton:active {
+  transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* Pagination Dot Indicators */
+.pagination {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  padding: 6px 12px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  transition: opacity 0.3s ease;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: scale(1.2);
+}
+
+.activeDot {
+  background: var(--accent-primary);
+  width: 20px; /* Expands to a pill pill layout for active */
+  border-radius: 4px;
+  box-shadow: 0 0 8px var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .carouselContainer {
+    padding: 8px;
+  }
+  
+  .navButton {
+    display: none; /* Hide arrow navigation on mobile since users swipe or tap dots */
+  }
+  
+  .pagination {
+    bottom: 16px;
+    padding: 4px 8px;
+  }
+  
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .activeDot {
+    width: 14px;
+  }
+}
