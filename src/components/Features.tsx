@@ -37,7 +37,7 @@ const featuresData = [
 
 export default function Features() {
   return (
-    <section className={styles.features}>
+    <section className={styles.features} id="features">
       <div className="container">
         <div className={styles.header}>
           <h2 className={`${styles.title} text-gradient`}>Everything you need</h2>

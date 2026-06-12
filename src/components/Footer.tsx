@@ -7,9 +7,9 @@ export default function Footer() {
         <div className={styles.content}>
           <div className={styles.brand}>TaskFlow</div>
           <div className={styles.links}>
-            <a href="#" className={styles.link}>Features</a>
-            <a href="#" className={styles.link}>Pricing</a>
-            <a href="#" className={styles.link}>Contact</a>
+            <a href="#hero" className={styles.link}>Home</a>
+            <a href="#features" className={styles.link}>Features</a>
+            <a href="#contact" className={styles.link}>Contact</a>
           </div>
         </div>
         <div className={styles.copyright}>

@@ -5,7 +5,7 @@ import HighlightsCarousel from './HighlightsCarousel';
 
 export default function Hero() {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} id="hero">
       <div className="container">
         <h1 className={`${styles.title} fade-in-up`}>
           Manage Tasks with <span className="text-gradient">Precision</span>
