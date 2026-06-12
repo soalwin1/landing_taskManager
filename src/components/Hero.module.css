@@ -1,58 +1,92 @@
 .hero {
-  padding: 120px 0 80px;
-  text-align: center;
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0 0;
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  width: 100%;
+}
+
+.textGroup {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
-  font-size: 4rem;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
+  line-height: 1.15;
+  margin-bottom: 20px;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto 40px;
+  max-width: 540px;
+  margin-bottom: 32px;
+  line-height: 1.5;
 }
 
 .actions {
   display: flex;
   gap: 16px;
-  justify-content: center;
-  margin-bottom: 80px;
+  justify-content: flex-start;
 }
 
-.previewContainer {
-  margin: 0 auto;
-  max-width: 1000px;
-  border-radius: 16px;
-  padding: 12px;
-  background: var(--glass-border);
-  box-shadow: var(--glow-shadow);
-  transition: transform 0.3s ease;
-}
-
-.previewContainer:hover {
-  transform: translateY(-10px) scale(1.02);
-}
-
-.previewImage {
+.carouselWrapper {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
+  max-width: min(650px, 80vw, 42vh);
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 120px 0 60px;
+    overflow: visible;
+  }
+
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .textGroup {
+    text-align: center;
+    align-items: center;
+  }
+
+  .subtitle {
+    margin: 0 auto 24px;
+  }
+
+  .actions {
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .carouselWrapper {
+    max-width: 600px;
+  }
 }
 
 @media (max-width: 768px) {
   .title {
-    font-size: 2.5rem;
-  }
-  .hero {
-    padding: 80px 0 40px;
+    font-size: 2.2rem;
   }
 }

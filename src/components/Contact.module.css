@@ -1,20 +1,26 @@
 .contact {
   position: relative;
-  padding: 100px 0;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--bg-primary);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
 }
 
 .header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 56px auto;
+  margin: 0 auto 24px auto;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
@@ -25,7 +31,7 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 20px;
   align-items: stretch;
 }
 
@@ -42,7 +48,7 @@
 }
 
 .infoCard {
-  padding: 40px;
+  padding: 24px 28px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -50,23 +56,23 @@
 }
 
 .cardHeader {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   color: var(--text-primary);
 }
 
 .cardInfoText {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 32px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 16px;
 }
 
 .infoList {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 14px;
   margin-top: auto;
 }
 
@@ -143,14 +149,14 @@ a.infoValue:hover {
 
 /* Form Styling */
 .formCard {
-  padding: 40px;
+  padding: 24px 28px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .formRow {
@@ -168,7 +174,7 @@ a.infoValue:hover {
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .label {
@@ -181,12 +187,12 @@ a.infoValue:hover {
 .input,
 .textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding: 9px 14px;
   background: rgba(15, 23, 42, 0.5);
   border: 1px solid var(--glass-border);
   border-radius: 8px;
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: inherit;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
@@ -209,7 +215,7 @@ a.infoValue:hover {
 }
 
 .textarea {
-  min-height: 140px;
+  min-height: 80px;
   resize: vertical;
 }
 
@@ -299,4 +305,46 @@ a.infoValue:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.revealActive {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slideInLeft {
+  opacity: 0;
+  transform: translateX(-40px);
+  will-change: opacity, transform;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slideInLeftActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 100ms;
+}
+
+.slideInRight {
+  opacity: 0;
+  transform: translateX(40px);
+  will-change: opacity, transform;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slideInRightActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 200ms;
 }

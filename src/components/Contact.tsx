@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useRef } from 'react';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import { sendContactEmail, FormState } from '../app/actions';
 import styles from './Contact.module.css';
 
@@ -13,6 +13,25 @@ export default function Contact() {
   const [state, formAction, pending] = useActionState(sendContactEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection observer to trigger scroll-reveal animation on every scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   // Clear the form fields upon successful email sending
   useEffect(() => {
     if (state.success) {
@@ -21,9 +40,9 @@ export default function Contact() {
   }, [state.success]);
 
   return (
-    <section className={styles.contact} id="contact">
+    <section ref={sectionRef} className={styles.contact} id="contact">
       <div className="container">
-        <div className={styles.header}>
+        <div className={`${styles.header} ${isVisible ? styles.revealActive : styles.reveal}`}>
           <h2 className={`${styles.title} text-gradient`}>Get in Touch</h2>
           <p className={styles.subtitle}>
             Have questions or feedback? Reach out to us and we'll get back to you as soon as possible.
@@ -32,7 +51,7 @@ export default function Contact() {
 
         <div className={styles.grid}>
           {/* Left Side: Contact Information Cards */}
-          <div className={styles.infoSection}>
+          <div className={`${styles.infoSection} ${isVisible ? styles.slideInLeftActive : styles.slideInLeft}`}>
             <div className={`${styles.infoCard} glass-panel`}>
               <h3 className={styles.cardHeader}>Contact Information</h3>
               <p className={styles.cardInfoText}>
@@ -84,7 +103,7 @@ export default function Contact() {
           </div>
 
           {/* Right Side: Contact Form Panel */}
-          <div className={`${styles.formCard} glass-panel`}>
+          <div className={`${styles.formCard} glass-panel ${isVisible ? styles.slideInRightActive : styles.slideInRight}`}>
             <form ref={formRef} action={formAction} className={styles.form}>
               
               {/* Feedback Message Banners */}

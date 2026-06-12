@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from 'react';
 import styles from './Features.module.css';
 
 const featuresData = [
@@ -36,10 +39,28 @@ const featuresData = [
 ];
 
 export default function Features() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className={styles.features} id="features">
+    <section ref={sectionRef} className={styles.features} id="features">
       <div className="container">
-        <div className={styles.header}>
+        <div className={`${styles.header} ${isVisible ? styles.revealActive : styles.reveal}`}>
           <h2 className={`${styles.title} text-gradient`}>Everything you need</h2>
           <p className={styles.subtitle}>
             A powerful set of features designed to make task management effortless and efficient.
@@ -48,7 +69,11 @@ export default function Features() {
         
         <div className={styles.grid}>
           {featuresData.map((feature, index) => (
-            <div key={index} className={styles.card}>
+            <div 
+              key={index} 
+              className={`${styles.card} ${isVisible ? styles.revealActive : styles.reveal}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
               <div className={styles.iconWrapper}>
                 {feature.icon}
               </div>
