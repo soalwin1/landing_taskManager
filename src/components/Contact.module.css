@@ -72,8 +72,7 @@
 .infoList {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: auto;
+  gap: 24px;
 }
 
 .infoItem {

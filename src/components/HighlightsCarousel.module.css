@@ -1,6 +1,6 @@
 .carouselContainer {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
   border-radius: 16px;
   padding: 12px;
   background: var(--glass-bg);
@@ -20,10 +20,14 @@
   border-radius: 8px;
   position: relative;
   width: 100%;
+  aspect-ratio: 3 / 4;   /* portrait — change to e.g. 4/5 for a taller look */
+  min-height: 420px;
+  max-height: 620px;
 }
 
 .slider {
   display: flex;
+  height: 100%;              /* must propagate height down to each .slide */
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
 }
@@ -31,16 +35,19 @@
 .slide {
   flex: 0 0 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+  position: relative; /* anchor the absolutely-positioned image */
 }
 
 .image {
+  position: absolute;
+  inset: 0;                  /* top/right/bottom/left: 0 — covers every pixel */
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   border-radius: 8px;
+  object-fit: cover;         /* fills without distortion, crops edges if needed */
+  object-position: center top;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -147,6 +154,11 @@
 @media (max-width: 768px) {
   .carouselContainer {
     padding: 8px;
+  }
+
+  .viewport {
+    min-height: 300px;
+    max-height: 480px;
   }
   
   .navButton {
